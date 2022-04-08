@@ -54,12 +54,12 @@ let displayGallery = function (seeds) {
     document.write(html)
 }
 
-let seeds = localStorage.getItem("seeds")
-if (seeds === null) { // If true, this is a first-time visitor
+let seeds = localStorage.getItem("seeds") // Attempt to get the seeds from LocalStorage
+if (seeds === null) { // If we got null, then this is a first-time visitor and we need to generate seeds from scratch and store them
     seeds = generateSeeds()
     localStorage.setItem("seeds", seeds)
-} else {
-    seeds = seeds.split(",")
+} else { // If "seeds" is not null, then we know we should have seeds in a comma-delimited string format ("0.123,0.456,0.789")
+    seeds = seeds.split(",") // So we'll split it on the commas to turn it into a real array
 }
 
-displayGallery(seeds)
+displayGallery(seeds) // By this point, either way, "seeds" should be an array of random seed values
